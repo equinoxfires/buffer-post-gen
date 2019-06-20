@@ -7,12 +7,37 @@ body {
 
 .App {
   text-align: center;
+  width: 540px;
+  height: 675px;
+  background-size: cover;
+}
+.hue-pass,
+.low-pass,
+.high-pass {
+  width: 540px;
+  height: 675px;
+  position: absolute;
+}
+
+.hue-pass {
+  background-color: #990000;
+  mix-blend-mode: color;
+}
+
+.low-pass {
+  background-color: #aa4422;
+  mix-blend-mode: lighten;
+}
+
+.high-pass {
+  background-color: #ffff66;
+  mix-blend-mode: darken;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  isolation: isolate;
 }
 
 .App-header {
