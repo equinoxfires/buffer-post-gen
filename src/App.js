@@ -1,37 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Textfit } from 'react-textfit';
 import logo from './assets/proseProtips.png';
 import img1 from './assets/1.jpg';
 import img2 from './assets/2.jpg';
 import img3 from './assets/3.jpg';
 import './App.css';
+const backgrounds = [img1, img2, img3];
+class App extends Component {
+  constructor() {
+    super();
+    this.state = { backgrounds };
+  }
+  render() {
+    const testText =
+      'It is most commonly used when mix-blend-mode has been declared on another element. Applying isolation to the element guards that element so that it does not inherit the mix-blend-mode applied to the other elements that might be behind it..';
 
-function App() {
-  const backgrounds = [img1, img2, img3];
+    var background =
+      backgrounds[Math.floor(Math.random() * backgrounds.length)];
 
-  const testText =
-    'It is most commonly used when mix-blend-mode has been declared on another element. Applying isolation to the element guards that element so that it does not inherit the mix-blend-mode applied to the other elements that might be behind it..';
+    const bgStyle = { backgroundImage: 'url(' + background + ')' };
 
-  var background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+    return (
+      <div className="App" style={bgStyle}>
+        <div className="colors-holder">
+          <div className="low-pass" />
+          <div className="hue-pass" />
+          <div className="high-pass" />
+        </div>
+        <img src={logo} className="App-logo" alt="logo" />
 
-  const bgStyle = { backgroundImage: 'url(' + background + ')' };
-
-  return (
-    <div className="App" style={bgStyle}>
-      <div className="colors-holder">
-        <div className="low-pass" />
-        <div className="hue-pass" />
-        <div className="high-pass" />
+        <div className="text-holder">
+          <Textfit className="body-text" mode="multi">
+            {testText}
+          </Textfit>
+        </div>
       </div>
-      <img src={logo} className="App-logo" alt="logo" />
-
-      <div className="text-holder">
-        <Textfit className="body-text" mode="multi">
-          {testText}
-        </Textfit>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
