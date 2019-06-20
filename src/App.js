@@ -1,5 +1,5 @@
 import React from 'react';
-import Textfit from 'react-textfit';
+import { Textfit } from 'react-textfit';
 import logo from './assets/proseProtips.png';
 import img1 from './assets/1.jpg';
 import img2 from './assets/2.jpg';
@@ -9,7 +9,7 @@ import './App.css';
 function App() {
   const backgrounds = [img1, img2, img3];
 
-  const testText = 'Write every day.'
+  const testText = 'Write every day.';
 
   var background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
 
@@ -22,11 +22,13 @@ function App() {
         <div className="hue-pass" />
         <div className="high-pass" />
       </div>
-      <Textfit className="body-text" mode="multi">
-        {testText}
-      </Textfit>
+      <img src={logo} className="App-logo" alt="logo" />
 
-      <img src={logo} class="App-logo" alt="logo" />
+      <div className="text-holder">
+        <Textfit className="body-text" mode="multi">
+          {testText}
+        </Textfit>
+      </div>
     </div>
   );
 }
