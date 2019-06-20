@@ -9,7 +9,8 @@ import './App.css';
 function App() {
   const backgrounds = [img1, img2, img3];
 
-  const testText = 'Write every day.';
+  const testText =
+    'It is most commonly used when mix-blend-mode has been declared on another element. Applying isolation to the element guards that element so that it does not inherit the mix-blend-mode applied to the other elements that might be behind it..';
 
   var background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
 

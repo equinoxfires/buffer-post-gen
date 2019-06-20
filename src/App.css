@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'BodoniXT';
+  src: url('./assets/BodoniXT.woff'); /* IE9 Compat Modes */
+}
+
 html,
 body {
   width: 540px;
@@ -67,6 +72,7 @@ body {
   color: #fff;
   height: 100%;
   width: 100%;
+  font-family: 'BodoniXT';
 }
 
 @keyframes App-logo-spin {
