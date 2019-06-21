@@ -3,13 +3,6 @@
   src: url('./assets/BodoniXT.woff'); /* IE9 Compat Modes */
 }
 
-html,
-body {
-  width: 540px;
-  height: 675px;
-  overflow: hidden;
-}
-
 .App {
   text-align: center;
   width: 540px;
@@ -19,7 +12,8 @@ body {
 }
 .hue-pass,
 .low-pass,
-.high-pass {
+.high-pass,
+canvas {
   width: 540px;
   height: 675px;
   position: absolute;
