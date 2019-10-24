@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'BodoniXT';
-  src: url('./assets/BodoniXT.woff'); /* IE9 Compat Modes */
+  font-family: 'BookAntiqua';
+  src: url('./assets/BKANT.woff'); /* IE9 Compat Modes */
 }
 
 .App {
@@ -66,7 +66,7 @@ canvas {
   color: #fff;
   height: 100%;
   width: 100%;
-  font-family: 'BodoniXT';
+  font-family: 'BookAntiqua';
 }
 
 @keyframes App-logo-spin {
