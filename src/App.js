@@ -3,11 +3,29 @@ import { Textfit } from 'react-textfit';
 import html2canvas from 'html2canvas';
 import c2i from './canvas2image.js';
 import logo from './assets/proseProtips.png';
-import img1 from './assets/1.jpg';
-import img2 from './assets/2.jpg';
-import img3 from './assets/3.jpg';
+import $ from 'jquery';
+// import img1 from './assets/1.jpg';
+// import img2 from './assets/2.jpg';
+// import img3 from './assets/3.jpg';
 import './App.css';
-const backgrounds = [img1, img2, img3];
+
+
+const backgrounds = [];
+
+for (let i = 4; i <= 39; i++) { backgrounds.push(i + '.jpg') };
+// $.ajax({
+//   url: process.env.PUBLIC_URL + '/',
+//   success: function (data) {
+//     $(data).find("a").attr("href", function (i, val) {
+//       if (val.match(/\.(jpe?g|png|gif)$/)) {
+//         console.log(val);
+//         backgrounds.push(val);
+//       }
+//     });
+//   }
+// });
+
+console.log(backgrounds);
 const testText =
   'It is most commonly used when mix-blend-mode has been declared on another element. Applying isolation to the element guards that element so that it does not inherit the mix-blend-mode applied to the other elements that might be behind it..';
 
