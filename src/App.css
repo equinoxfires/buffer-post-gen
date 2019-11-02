@@ -3,7 +3,7 @@
   src: url('./assets/BKANT.woff'); /* IE9 Compat Modes */
 }
 
-.App {
+.App, .app-bg {
   text-align: center;
   width: 540px;
   height: 675px;
@@ -22,7 +22,7 @@ canvas {
 .hue-pass {
   background-color: #990000;
   mix-blend-mode: color;
-}
+}s
 
 .low-pass {
   background-color: #aa4422;
@@ -32,6 +32,11 @@ canvas {
 .high-pass {
   background-color: #ffff66;
   mix-blend-mode: darken;
+}
+
+#opacity-select {
+  display: flex;
+  flex-direction: row;
 }
 
 .App-logo {

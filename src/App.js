@@ -2,28 +2,21 @@ import React, { Component } from 'react';
 import { Textfit } from 'react-textfit';
 import html2canvas from 'html2canvas';
 import c2i from './canvas2image.js';
-import logo from './assets/proseProtips.png';
-import $ from 'jquery';
-// import img1 from './assets/1.jpg';
-// import img2 from './assets/2.jpg';
-// import img3 from './assets/3.jpg';
+import TypeSelect from './TypeSelect.js';
+import OpacitySelect from './OpacitySelect.js';
+
+
+import protip from './assets/protip.png';
+import exercise from './assets/exercise.png';
+import cr from './assets/currentlyReading.png';
+import quote from './assets/quote.png';
+
 import './App.css';
 
-
+const logo = { protip, exercise, cr, quote };
 const backgrounds = [];
 
 for (let i = 4; i <= 39; i++) { backgrounds.push(i + '.jpg') };
-// $.ajax({
-//   url: process.env.PUBLIC_URL + '/',
-//   success: function (data) {
-//     $(data).find("a").attr("href", function (i, val) {
-//       if (val.match(/\.(jpe?g|png|gif)$/)) {
-//         console.log(val);
-//         backgrounds.push(val);
-//       }
-//     });
-//   }
-// });
 
 console.log(backgrounds);
 const testText =
@@ -40,14 +33,23 @@ class App extends Component {
     super();
     const background =
       backgrounds[Math.floor(Math.random() * backgrounds.length)];
-    this.state = { background, input: testText, output: testText };
+    this.state = { background, input: testText, output: testText, opacity: 100, type: 'protip' };
     this.enterText = this.enterText.bind(this);
     this.generateText = this.generateText.bind(this);
     this.generatePost = this.generatePost.bind(this);
     this.generateBackground = this.generateBackground.bind(this);
+    this.setOpacity = this.setOpacity.bind(this);
+    this.selectType = this.selectType.bind(this);
   }
   enterText(event) {
     this.setState({ input: event.target.value });
+  }
+  setOpacity(value) {
+    this.setState({ opacity: value });
+  }
+
+  selectType(value) {
+    this.setState({ type: value });
   }
   generateText() {
     console.log('called generateText');
@@ -62,25 +64,26 @@ class App extends Component {
       document.body.appendChild(canvas);
       console.log(c2i);
       const generatedImage = c2i.convertToPNG(canvas, 1080, 1350);
+      c2i.saveAsPNG(canvas);
       console.log(generatedImage);
 
-      const requestUrl =
-        'https://api.bufferapp.com/1/profiles.json?access_token=' +
-        accessToken +
-        '';
-      const postUrl =
-        'https://api.bufferapp.com/1/updates/create.json?access_token=' +
-        accessToken +
-        '&text=This%20is%20an%20example%20update&media[link]=http%3A%2F%2Fgoogle.com&media[description]=The%20google%20homepage';
-      self.httpGetAsync(requestUrl, function (response) {
+      // // const requestUrl =
+      // //   'https://api.bufferapp.com/1/profiles.json?access_token=' +
+      // //   accessToken +
+      // //   '';
+      // // const postUrl =
+      // //   'https://api.bufferapp.com/1/updates/create.json?access_token=' +
+      // //   accessToken +
+      // //   '&text=This%20is%20an%20example%20update&media[link]=http%3A%2F%2Fgoogle.com&media[description]=The%20google%20homepage';
+      // // self.httpGetAsync(requestUrl, function (response) {
 
-        console.log(response);
-        self.httpPostAsync(postUrl, function (response) {
+      // //   console.log(response);
+      // //   self.httpPostAsync(postUrl, function (response) {
 
-          console.log(response);
+      // //     console.log(response);
 
-        });
-      });
+      // //   });
+      // });
     });
   }
   httpGetAsync(theUrl, callback) {
@@ -108,7 +111,7 @@ class App extends Component {
     });
   }
   render() {
-    const bgStyle = { backgroundImage: 'url(' + this.state.background + ')' };
+    const bgStyle = { backgroundImage: 'url(' + this.state.background + ')', opacity: this.state.opacity * 0.01 };
 
     return (
       <div className="master">
@@ -117,21 +120,30 @@ class App extends Component {
           <button onClick={this.generateText}>Generate</button>
           <button onClick={this.generateBackground}>New Background</button>
           <button onClick={this.generatePost}>Make Post</button>
+          <TypeSelect selectType={this.selectType} type={this.state.type} />
+          <OpacitySelect setOpacity={this.setOpacity} opacity={this.state.opacity} />
         </div>
-        <div className="App" id="App" style={bgStyle}>
-          {/* <div className="colors-holder">
+        <div className="App" id="App" style={{ background: 'black' }}>
+          <div className="app-bg" style={bgStyle}>
+            {/* <div className="colors-holder">
             <div className="low-pass" />
             <div className="hue-pass" />
             <div className="high-pass" />
           </div> */}
-          <img src={logo} className="App-logo" alt="logo" />
 
-          <div className="text-holder">
-            <Textfit className="body-text" mode="multi">
-              {this.state.output}
-            </Textfit>
           </div>
+
+          <div className="app-bg">
+            <div className="text-holder">
+              <Textfit className="body-text" mode="multi">
+                {this.state.output}
+              </Textfit>
+            </div>
+            <img src={logo[this.state.type]} className="App-logo" alt="logo" />
+          </div>
+
         </div>
+
       </div>
     );
   }
